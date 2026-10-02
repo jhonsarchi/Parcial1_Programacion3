@@ -64,10 +64,7 @@ defmodule Validacion do
     end
   end
 
-  @doc"""
-  Esta función verifica que el código del recolector aparezca en la lista
-  de recolectores.
-  """
+  #Verifica que el código del recolector aparezca en la lista de recolectores.
   defp validar_recolector(pesaje, recolectores) do
     existe = Enum.any?(recolectores, fn recolector -> recolector.codigo == pesaje.recolector end)
 
@@ -77,10 +74,7 @@ defmodule Validacion do
     end
   end
 
-  @doc"""
-  Función que verifica que el identificador del lote
-  aparezca en la lista de lotes.
-  """
+  # Verifica que el identificador del lote aparezca en la lista de lotes.
   defp validar_lote(pesaje, lotes) do
     existe = Enum.any?(lotes, fn lote -> lote.id == pesaje.lote end)
 
@@ -90,10 +84,7 @@ defmodule Validacion do
     end
   end
 
-  @doc"""
-  Esta función comprueba que el día sea entero y esté dentro
-  de los días de cosecha.
-  """
+  # Comprueba que el día sea entero y esté dentro de los días de cosecha.
   defp validar_dia(pesaje) do
     case pesaje.dia do
       dia when is_integer(dia) and dia >= 1 and dia <= @dias_cosecha ->
@@ -104,10 +95,7 @@ defmodule Validacion do
     end
   end
 
-  @doc"""
-  Función que comprueba que los kilos sean numéricos y estén dentro
-  del rango permitido.
-  """
+  # Comprueba que los kilos sean numéricos y estén dentro del rango permitido.
   defp validar_kilos(pesaje) do
     case pesaje.kilos do
       kilos when is_number(kilos) and kilos > 0 and kilos <= @max_kilos_pesaje ->
@@ -118,10 +106,7 @@ defmodule Validacion do
     end
   end
 
-  @doc"""
-  Esta función comprueba que el porcentaje de verdes sea numérico
-  y esté entre 0 y 100.
-  """
+  # Comprueba que el porcentaje de verdes sea numérico y esté entre 0 y 100.
   defp validar_porcentaje(pesaje) do
     case pesaje.verdes do
       verdes when is_number(verdes) and verdes >= 0 and verdes <= 100 ->
@@ -132,10 +117,7 @@ defmodule Validacion do
     end
   end
 
-  @doc"""
-  Esta función convierte un texto a entero únicamente cuando todo el texto
-  corresponde al número.
-  """
+  # Convierte un texto a entero únicamente cuando todo el texto corresponde al número.
   defp convertir_entero(texto) do
     case Integer.parse(texto) do
       {numero, ""} -> {:ok, numero}
@@ -143,10 +125,7 @@ defmodule Validacion do
     end
   end
 
-  @doc"""
-  Esta función convierte un texto a número decimal únicamente
-  cuando todo el texto es válido.
-  """
+  # Convierte un texto a número decimal únicamente cuando todo el texto es válido.
   defp convertir_numero(texto) do
     case Float.parse(texto) do
       {numero, ""} -> {:ok, numero}

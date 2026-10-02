@@ -8,9 +8,7 @@ defmodule Programa do
   - fecha: Octubre 2026
   """
 
-  @doc"""
-  Función que inicia el flujo principal de la aplicación.
-  """
+  # Inicia el flujo principal de la aplicación.
   def main do
     recolectores = Datos.recolectores()
     lotes = Datos.lotes()
@@ -34,10 +32,8 @@ defmodule Programa do
     solicitar_desprendible(recolectores, pesajes_validos, liquidaciones)
   end
 
-  @doc"""
-  Función que solicita una sola línea de pesaje y decide si se omite,
-  se rechaza o se agrega.
-  """
+
+  # Solicita una sola línea de pesaje y decide si se omite, se rechaza o se agrega.
   defp solicitar_pesaje_adicional(pesajes_validos, rechazados, recolectores, lotes) do
     linea =
       Util.leer(
@@ -55,10 +51,7 @@ defmodule Programa do
     end
   end
 
-  @doc"""
-  Función que convierte la línea escrita por el usuario y continúa con la
-  validación del pesaje.
-  """
+  # Convierte la línea escrita por el usuario y continúa con la validación del pesaje.
   defp procesar_pesaje_adicional(linea, pesajes_validos, rechazados, recolectores, lotes) do
     case Validacion.convertir_linea_pesaje(linea) do
       {:error, :formato_invalido} ->
@@ -70,10 +63,7 @@ defmodule Programa do
     end
   end
 
-  @doc"""
-  Función que aplica las reglas de validación al pesaje adicional y actualiza
-  las listas de trabajo.
-  """
+  # Aplica las reglas de validación al pesaje adicional y actualiza las listas de trabajo.
   defp agregar_pesaje_validado(pesaje, pesajes_validos, rechazados, recolectores, lotes) do
     case Validacion.validar_pesaje(pesaje, recolectores, lotes) do
       {:ok, pesaje_valido} ->

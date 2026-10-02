@@ -332,10 +332,7 @@ defmodule Reportes do
     end
   end
 
-  @doc"""
-  Esta función calcula el rendimiento de un lote evitando
-  und división entre cero.
-  """
+  # Calcula el rendimiento de un lote evitando una división entre cero.
   defp calcular_rendimiento(kilos, hectareas) do
     cond do
       hectareas > 0 -> kilos / hectareas
@@ -343,10 +340,7 @@ defmodule Reportes do
     end
   end
 
-  @doc"""
-  Función que devuelve el texto que corresponde al cumplimiento
-  de la meta diaria.
-  """
+  # Devuelve el texto que corresponde al cumplimiento de la meta diaria.
   defp estado_meta(kilos) do
     cond do
       kilos >= @meta_diaria -> "cumplió la meta"
@@ -354,10 +348,7 @@ defmodule Reportes do
     end
   end
 
-  @doc"""
-  Función que calcula los kilos de cada recolector para un día y elimina
-  los resultados en cero.
-  """
+  # Calcula los kilos de cada recolector para un día y elimina los resultados en cero.
   defp kilos_recolectores_dia(recolectores, pesajes_validos, dia) do
     recolectores
     |> Enum.map(fn recolector ->
@@ -373,10 +364,7 @@ defmodule Reportes do
     |> Enum.filter(fn resultado -> resultado.kilos > 0 end)
   end
 
-  @doc"""
-  Función que obtiene el máximo de kilos del día y conserva todos los
-  recolectores empatados.
-  """
+  # Obtiene el máximo de kilos del día y conserva todos los recolectores empatados.
   defp mejores_del_dia(dia, kilos_recolectores) do
     case kilos_recolectores do
       [] ->
@@ -389,9 +377,7 @@ defmodule Reportes do
     end
   end
 
-  @doc"""
-  Función que construye una línea del reporte diario del mejor recolector.
-  """
+  # Construye una línea del reporte diario del mejor recolector.
   defp texto_mejores_dia(resultado) do
     case resultado.mejores do
       [] ->
@@ -407,10 +393,7 @@ defmodule Reportes do
     end
   end
 
-  @doc"""
-  Función que cuenta las apariciones como mejor diario y construye la línea
-  final de R5.
-  """
+  # Cuenta las apariciones como mejor diario y construye la línea final de R5.
   defp texto_mas_dias_como_mejor(mejores_por_dia, recolectores) do
     codigos =
       mejores_por_dia
@@ -447,10 +430,7 @@ defmodule Reportes do
     end
   end
 
-  @doc"""
-  Esta función calcula el costo promedio y evita dividir cuando
-  no existen kilos válidos.
-  """
+  # Calcula el costo promedio y evita dividir cuando no existen kilos válidos.
   defp costo_promedio(total, kilos) do
     cond do
       kilos > 0 -> total / kilos

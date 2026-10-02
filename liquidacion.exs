@@ -90,10 +90,7 @@ defmodule Liquidacion do
     end)
   end
 
-  @doc"""
-  Función que calcula todos los valores de un recolector usando
-  únicamente sus pesajes válidos.
-  """
+  # Calcula todos los valores de un recolector usando únicamente sus pesajes válidos.
   defp liquidar_recolector(recolector, pesajes_validos) do
     pesajes_recolector =
       Enum.filter(pesajes_validos, fn pesaje -> pesaje.recolector == recolector.codigo end)
